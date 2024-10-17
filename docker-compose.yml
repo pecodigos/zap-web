@@ -1,0 +1,11 @@
+services:
+  postgresql:
+    container_name: zap-web
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASS=postgres
+      - POSTGRES_DB=zap-web
+
