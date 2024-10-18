@@ -2,6 +2,7 @@ package com.pecodigos.zapweb.users.service;
 
 import com.pecodigos.zapweb.users.dtos.UserDTO;
 import com.pecodigos.zapweb.users.dtos.mapper.UserMapper;
+import com.pecodigos.zapweb.users.enums.Role;
 import com.pecodigos.zapweb.users.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +36,10 @@ public class UserService {
     public UserDTO create(UserDTO userDTO) {
         var user = userMapper.toEntity(userDTO);
         user.setPassword(passwordEncoder.encode(userDTO.password()));
+
+        if (user.getRole() == null) {
+            user.setRole(Role.MEMBER);
+        }
 
         return userMapper.toDTO(userRepository.save(user));
     }
