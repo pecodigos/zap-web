@@ -33,9 +33,10 @@ public class UserService {
     }
 
     public UserDTO create(UserDTO userDTO) {
-        passwordEncoder.encode(userDTO.password()); // TODO
+        var user = userMapper.toEntity(userDTO);
+        user.setPassword(passwordEncoder.encode(userDTO.password()));
 
-        return userMapper.toDTO(userRepository.save(userMapper.toEntity(userDTO)));
+        return userMapper.toDTO(userRepository.save(user));
     }
 
     public UserDTO update(UUID id, UserDTO userDTO) {
@@ -44,7 +45,7 @@ public class UserService {
                     data.setName(userDTO.name());
                     data.setUsername(userDTO.username());
                     data.setEmail(userDTO.email());
-                    data.setPassword(userDTO.password());
+                    data.setPassword(passwordEncoder.encode(userDTO.password()));
 
                     return userMapper.toDTO(userRepository.save(data));
                 }).orElseThrow(() -> new NoSuchElementException("No user found with that ID."));
@@ -53,5 +54,4 @@ public class UserService {
     public void delete(UUID id) {
         userRepository.deleteById(id);
     }
-
 }
