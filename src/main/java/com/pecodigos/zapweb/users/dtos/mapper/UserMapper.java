@@ -12,7 +12,7 @@ public class UserMapper {
             return null;
         }
 
-        return new UserDTO(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword());
+        return new UserDTO(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRole());
     }
 
     public User toEntity (UserDTO userDTO) {
@@ -26,6 +26,7 @@ public class UserMapper {
                 .username(userDTO.username())
                 .email(userDTO.email())
                 .password(userDTO.password())
+                .role(userDTO.role())
                 .build();
     }
 }

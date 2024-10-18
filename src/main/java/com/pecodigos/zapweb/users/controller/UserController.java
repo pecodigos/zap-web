@@ -27,10 +27,16 @@ public class UserController {
         return ResponseEntity.ok().body(userService.list());
     }
 
-    @PostMapping("/")
-    public ResponseEntity<UserDTO> create(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(userDTO));
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.register(userDTO));
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDTO) {
+        return null;
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> update(@PathVariable(name = "id") UUID id, @RequestBody UserDTO userDTO) {

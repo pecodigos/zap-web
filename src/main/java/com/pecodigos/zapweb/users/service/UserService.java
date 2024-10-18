@@ -1,10 +1,12 @@
 package com.pecodigos.zapweb.users.service;
 
+import com.pecodigos.zapweb.exceptions.UserAlreadyExistsException;
 import com.pecodigos.zapweb.users.dtos.UserDTO;
 import com.pecodigos.zapweb.users.dtos.mapper.UserMapper;
 import com.pecodigos.zapweb.users.enums.Role;
 import com.pecodigos.zapweb.users.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +35,31 @@ public class UserService {
                 .toList();
     }
 
-    public UserDTO create(UserDTO userDTO) {
+    public UserDTO login(UserDTO userDTO) {
+        var optionalUser = userRepository.findByUsername(userDTO.username());
+
+        if (optionalUser.isEmpty()) {
+            throw new BadCredentialsException("Invalid username or password.");
+        }
+
+        var user = optionalUser.get();
+
+        if (!passwordEncoder.matches(userDTO.password(), user.password())) {
+            throw new BadCredentialsException("Invalid username or password.");
+        }
+
+        return user;
+    }
+
+    public UserDTO register(UserDTO userDTO) {
+        if (userRepository.findByUsername(userDTO.username()).isPresent()) {
+            throw new UserAlreadyExistsException("User already exists with that username.");
+        }
+
+        if (userRepository.findByEmail(userDTO.email()).isPresent()) {
+            throw new UserAlreadyExistsException("User already exists with that e-mail.");
+        }
+
         var user = userMapper.toEntity(userDTO);
         user.setPassword(passwordEncoder.encode(userDTO.password()));
 
@@ -45,6 +71,14 @@ public class UserService {
     }
 
     public UserDTO update(UUID id, UserDTO userDTO) {
+        if (userRepository.findByUsername(userDTO.username()).isPresent()) {
+            throw new UserAlreadyExistsException("User already exists with that username.");
+        }
+
+        if (userRepository.findByEmail(userDTO.email()).isPresent()) {
+            throw new UserAlreadyExistsException("User already exists with that e-mail.");
+        }
+
         return userRepository.findById(id)
                 .map(data -> {
                     data.setName(userDTO.name());
