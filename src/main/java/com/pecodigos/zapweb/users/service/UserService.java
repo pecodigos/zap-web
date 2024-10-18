@@ -3,6 +3,8 @@ package com.pecodigos.zapweb.users.service;
 import com.pecodigos.zapweb.users.dtos.UserDTO;
 import com.pecodigos.zapweb.users.dtos.mapper.UserMapper;
 import com.pecodigos.zapweb.users.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,10 +12,12 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
-    private UserRepository userRepository;
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public UserDTO findById(UUID id) {
         return userRepository.findById(id)
@@ -29,6 +33,8 @@ public class UserService {
     }
 
     public UserDTO create(UserDTO userDTO) {
+        passwordEncoder.encode(userDTO.password()); // TODO
+
         return userMapper.toDTO(userRepository.save(userMapper.toEntity(userDTO)));
     }
 

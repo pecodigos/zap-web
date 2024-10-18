@@ -1,16 +1,14 @@
 package com.pecodigos.zapweb.users.model;
 
 import com.pecodigos.zapweb.users.enums.Role;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -20,18 +18,28 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tb_users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Length(min = 5, max = 120)
+    @Column(length = 120, nullable = false)
     private String name;
+
+    @Length(min = 7, max = 30)
+    @Column(length = 30, nullable = false)
     private String username;
 
     @Email
+    @Length(min = 10, max = 120)
+    @Column(length = 120, nullable = false)
     private String email;
 
+    @Length(min = 9, max = 120)
+    @Column(length = 120, nullable = false)
     private String password;
 
     private Role role = Role.MEMBER;
