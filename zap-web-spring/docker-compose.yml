@@ -1,11 +1,10 @@
 services:
   postgresql:
-    container_name: zap-web
+    container_name: zap-web-spring
     image: postgres
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=zap-web
-
+      - POSTGRES_DB=zap-web-spring
