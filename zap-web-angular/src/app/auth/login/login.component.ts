@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
     MatFormField,
     MatLabel,
     RouterOutlet,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
