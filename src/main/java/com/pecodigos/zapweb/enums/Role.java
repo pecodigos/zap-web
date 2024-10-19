@@ -1,4 +1,4 @@
-package com.pecodigos.zapweb.users.enums;
+package com.pecodigos.zapweb.enums;
 
 public enum Role {
     MEMBER,
