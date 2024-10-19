@@ -1,6 +1,6 @@
 package com.pecodigos.zapweb.users.dtos;
 
-import com.pecodigos.zapweb.users.enums.Role;
+import com.pecodigos.zapweb.enums.Role;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

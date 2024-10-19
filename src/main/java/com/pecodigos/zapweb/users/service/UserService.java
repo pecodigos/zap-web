@@ -3,7 +3,7 @@ package com.pecodigos.zapweb.users.service;
 import com.pecodigos.zapweb.exceptions.UserAlreadyExistsException;
 import com.pecodigos.zapweb.users.dtos.UserDTO;
 import com.pecodigos.zapweb.users.dtos.mapper.UserMapper;
-import com.pecodigos.zapweb.users.enums.Role;
+import com.pecodigos.zapweb.enums.Role;
 import com.pecodigos.zapweb.users.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
