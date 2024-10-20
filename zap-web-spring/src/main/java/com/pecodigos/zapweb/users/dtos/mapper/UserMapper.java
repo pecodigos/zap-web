@@ -1,35 +1,14 @@
 package com.pecodigos.zapweb.users.dtos.mapper;
 
-import com.pecodigos.zapweb.mapper.GenericMapper;
 import com.pecodigos.zapweb.users.dtos.UserDTO;
 import com.pecodigos.zapweb.users.model.User;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Component
-public class UserMapper extends GenericMapper<User, UserDTO> {
+@Mapper
+public interface UserMapper {
+    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    @Override
-    public UserDTO toDto(User user) {
-        if (user == null) {
-            return null;
-        }
-
-        return new UserDTO(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRole());
-    }
-
-    @Override
-    public User toEntity (UserDTO userDTO) {
-        if (userDTO == null) {
-            return null;
-        }
-
-        return User.builder()
-                .id(userDTO.id())
-                .name(userDTO.name())
-                .username(userDTO.username())
-                .email(userDTO.email())
-                .password(userDTO.password())
-                .role(userDTO.role())
-                .build();
-    }
+    UserDTO toDto(User user);
+    User toEntity(UserDTO userDTO);
 }

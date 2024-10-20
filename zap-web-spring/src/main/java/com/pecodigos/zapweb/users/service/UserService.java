@@ -2,8 +2,8 @@ package com.pecodigos.zapweb.users.service;
 
 import com.pecodigos.zapweb.exceptions.UserAlreadyExistsException;
 import com.pecodigos.zapweb.users.dtos.UserDTO;
-import com.pecodigos.zapweb.users.dtos.mapper.UserMapper;
 import com.pecodigos.zapweb.enums.Role;
+import com.pecodigos.zapweb.users.dtos.mapper.UserMapper;
 import com.pecodigos.zapweb.users.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,19 +19,18 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserDTO findById(UUID id) {
         return userRepository.findById(id)
-                .map(userMapper::toDto)
+                .map(UserMapper.INSTANCE::toDto)
                 .orElseThrow(() -> new NoSuchElementException("No user with that name."));
     }
 
     public List<UserDTO> list() {
         return userRepository.findAll()
                 .stream()
-                .map(userMapper::toDto)
+                .map(UserMapper.INSTANCE::toDto)
                 .toList();
     }
 
@@ -60,14 +59,14 @@ public class UserService {
             throw new UserAlreadyExistsException("User already exists with that e-mail.");
         }
 
-        var user = userMapper.toEntity(userDTO);
+        var user = UserMapper.INSTANCE.toEntity(userDTO);
         user.setPassword(passwordEncoder.encode(userDTO.password()));
 
         if (user.getRole() == null) {
             user.setRole(Role.MEMBER);
         }
 
-        return userMapper.toDto(userRepository.save(user));
+        return UserMapper.INSTANCE.toDto(userRepository.save(user));
     }
 
     public UserDTO update(UUID id, UserDTO userDTO) {
@@ -86,7 +85,7 @@ public class UserService {
                     data.setEmail(userDTO.email());
                     data.setPassword(passwordEncoder.encode(userDTO.password()));
 
-                    return userMapper.toDto(userRepository.save(data));
+                    return UserMapper.INSTANCE.toDto(userRepository.save(data));
                 }).orElseThrow(() -> new NoSuchElementException("No user found with that ID."));
     }
 
