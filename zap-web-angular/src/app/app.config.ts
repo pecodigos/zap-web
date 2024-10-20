@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,8 +21,10 @@ export const appConfig: ApplicationConfig = {
       MatFormFieldModule,
       MatInputModule,
       MatButtonModule,
+      MatToolbarModule,
       FormsModule,
-      HttpClientModule
+      HttpClientModule,
+      MatCardModule
     ),
   ],
 };

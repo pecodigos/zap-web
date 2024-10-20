@@ -5,6 +5,8 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,9 @@ import { MatInputModule } from '@angular/material/input';
     MatLabel,
     RouterOutlet,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

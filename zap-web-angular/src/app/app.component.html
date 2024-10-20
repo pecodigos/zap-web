@@ -1,4 +1,8 @@
-<mat-toolbar color="primary">
-  <span>{{ title }}</span>
+<mat-toolbar class="spacer" color="accent">
+  <a mat-button routerLink="/" href="/">Zap Web</a>
+  <div class="login-register">
+  <a mat-button routerLink="/login" href="/login">Login</a>
+  <a mat-button routerLink="/register" href="/register">Register</a>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

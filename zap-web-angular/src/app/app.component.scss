@@ -1,0 +1,18 @@
+.spacer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-register {
+  display: flex;
+  gap: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+* {
+  font-family: 'Rethink Sans', sans-serif;
+}
