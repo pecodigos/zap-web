@@ -1,4 +1,4 @@
-package com.pecodigos.zapweb.chats.model;
+package com.pecodigos.zapweb.chats.models;
 
 import com.pecodigos.zapweb.enums.Content;
 import jakarta.persistence.*;

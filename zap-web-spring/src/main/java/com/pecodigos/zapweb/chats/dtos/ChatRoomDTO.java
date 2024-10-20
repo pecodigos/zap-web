@@ -1,4 +1,4 @@
-package com.pecodigos.zapweb.chats.dto;
+package com.pecodigos.zapweb.chats.dtos;
 
 import java.util.List;
 import java.util.UUID;

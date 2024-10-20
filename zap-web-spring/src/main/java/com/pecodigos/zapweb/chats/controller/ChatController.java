@@ -1,7 +1,7 @@
 package com.pecodigos.zapweb.chats.controller;
 
-import com.pecodigos.zapweb.chats.dto.MessageDTO;
-import com.pecodigos.zapweb.chats.service.MessageService;
+import com.pecodigos.zapweb.chats.dtos.MessageDTO;
+import com.pecodigos.zapweb.chats.services.MessageService;
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
