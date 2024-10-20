@@ -50,8 +50,8 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody UserDTO userDTO) {
         try {
-            Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.username(), userDTO.password()));
-            String token = jwtUtil.generateToken(auth.getName());
+            var loggedInUser = userService.login(userDTO);
+            String token = jwtUtil.generateToken(loggedInUser.username());
 
             return ResponseEntity.ok().body(Collections.singletonMap("token", token));
         } catch (BadCredentialsException e) {

@@ -16,22 +16,23 @@ import java.util.UUID;
 public class ChatRoomService {
 
     private final ChatRoomRepository chatRoomRepository;
+    private final ChatRoomMapper chatRoomMapper;
 
     public ChatRoomDTO createChatRoom(ChatRoomDTO chatRoomDTO) {
-        var chatRoom = ChatRoomMapper.INSTANCE.toEntity(chatRoomDTO);
+        var chatRoom = chatRoomMapper.toEntity(chatRoomDTO);
         var savedChatRoom = chatRoomRepository.save(chatRoom);
 
-        return ChatRoomMapper.INSTANCE.toDto(savedChatRoom);
+        return chatRoomMapper.toDto(savedChatRoom);
     }
 
     public Optional<ChatRoomDTO> getChatRoom(UUID id) {
         return chatRoomRepository.findById(id)
-                .map(ChatRoomMapper.INSTANCE::toDto);
+                .map(chatRoomMapper::toDto);
     }
 
     public List<ChatRoomDTO> getAllChatRooms() {
         return chatRoomRepository.findAll()
-                .stream().map(ChatRoomMapper.INSTANCE::toDto)
+                .stream().map(chatRoomMapper::toDto)
                 .toList();
     }
 

@@ -22,7 +22,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private UUID sender;
+    private UUID senderId;
 
     @Enumerated(EnumType.STRING)
     private Content content;

@@ -20,17 +20,18 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
     public UserDTO findById(UUID id) {
         return userRepository.findById(id)
-                .map(UserMapper.INSTANCE::toDto)
+                .map(userMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException("No user with that name."));
     }
 
     public List<UserDTO> list() {
         return userRepository.findAll()
                 .stream()
-                .map(UserMapper.INSTANCE::toDto)
+                .map(userMapper::toDto)
                 .toList();
     }
 
@@ -59,14 +60,14 @@ public class UserService {
             throw new UserAlreadyExistsException("User already exists with that e-mail.");
         }
 
-        var user = UserMapper.INSTANCE.toEntity(userDTO);
+        var user = userMapper.toEntity(userDTO);
         user.setPassword(passwordEncoder.encode(userDTO.password()));
 
         if (user.getRole() == null) {
             user.setRole(Role.MEMBER);
         }
 
-        return UserMapper.INSTANCE.toDto(userRepository.save(user));
+        return userMapper.toDto(userRepository.save(user));
     }
 
     public UserDTO update(UUID id, UserDTO userDTO) {
@@ -85,7 +86,7 @@ public class UserService {
                     data.setEmail(userDTO.email());
                     data.setPassword(passwordEncoder.encode(userDTO.password()));
 
-                    return UserMapper.INSTANCE.toDto(userRepository.save(data));
+                    return userMapper.toDto(userRepository.save(data));
                 }).orElseThrow(() -> new NoSuchElementException("No user found with that ID."));
     }
 

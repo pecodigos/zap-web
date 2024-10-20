@@ -1,4 +1,4 @@
-package com.pecodigos.zapweb.websocket.config;
+package com.pecodigos.zapweb.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

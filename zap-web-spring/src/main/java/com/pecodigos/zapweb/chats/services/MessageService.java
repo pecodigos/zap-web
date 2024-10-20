@@ -6,6 +6,7 @@ import com.pecodigos.zapweb.chats.repositories.MessageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -14,18 +15,25 @@ import java.util.UUID;
 public class MessageService {
 
     private final MessageRepository messageRepository;
+    private final MessageMapper messageMapper;
 
-    public MessageDTO getChat(UUID id) {
+    public MessageDTO getMessage(UUID id) {
         return messageRepository.findById(id)
-                .map(MessageMapper.INSTANCE::toDto)
+                .map(messageMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException("No chat found with that id."));
     }
 
+    public List<MessageDTO> getAllMessages() {
+        return messageRepository.findAll()
+                .stream().map(messageMapper::toDto)
+                .toList();
+    }
+
     public MessageDTO saveMessage(MessageDTO messageDTO) {
-        var chat = MessageMapper.INSTANCE.toEntity(messageDTO);
+        var chat = messageMapper.toEntity(messageDTO);
         messageRepository.save(chat);
 
-        return MessageMapper.INSTANCE.toDto(chat);
+        return messageMapper.toDto(chat);
     }
 
     public void deleteMessage(UUID id) {
