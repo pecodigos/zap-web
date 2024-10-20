@@ -24,14 +24,14 @@ public class UserService {
 
     public UserDTO findById(UUID id) {
         return userRepository.findById(id)
-                .map(userMapper::toDTO)
+                .map(userMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException("No user with that name."));
     }
 
     public List<UserDTO> list() {
         return userRepository.findAll()
                 .stream()
-                .map(userMapper::toDTO)
+                .map(userMapper::toDto)
                 .toList();
     }
 
@@ -67,7 +67,7 @@ public class UserService {
             user.setRole(Role.MEMBER);
         }
 
-        return userMapper.toDTO(userRepository.save(user));
+        return userMapper.toDto(userRepository.save(user));
     }
 
     public UserDTO update(UUID id, UserDTO userDTO) {
@@ -86,7 +86,7 @@ public class UserService {
                     data.setEmail(userDTO.email());
                     data.setPassword(passwordEncoder.encode(userDTO.password()));
 
-                    return userMapper.toDTO(userRepository.save(data));
+                    return userMapper.toDto(userRepository.save(data));
                 }).orElseThrow(() -> new NoSuchElementException("No user found with that ID."));
     }
 

@@ -1,6 +1,6 @@
 package com.pecodigos.zapweb.users.model;
 
-import com.pecodigos.zapweb.posts.model.Post;
+import com.pecodigos.zapweb.timeline.posts.model.Post;
 import com.pecodigos.zapweb.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,6 +1,6 @@
-package com.pecodigos.zapweb.likes.model;
+package com.pecodigos.zapweb.timeline.likes.model;
 
-import com.pecodigos.zapweb.posts.model.Post;
+import com.pecodigos.zapweb.timeline.posts.model.Post;
 import com.pecodigos.zapweb.users.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

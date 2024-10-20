@@ -1,13 +1,15 @@
 package com.pecodigos.zapweb.users.dtos.mapper;
 
+import com.pecodigos.zapweb.mapper.GenericMapper;
 import com.pecodigos.zapweb.users.dtos.UserDTO;
 import com.pecodigos.zapweb.users.model.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserMapper extends GenericMapper<User, UserDTO> {
 
-    public UserDTO toDTO (User user) {
+    @Override
+    public UserDTO toDto(User user) {
         if (user == null) {
             return null;
         }
@@ -15,6 +17,7 @@ public class UserMapper {
         return new UserDTO(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRole());
     }
 
+    @Override
     public User toEntity (UserDTO userDTO) {
         if (userDTO == null) {
             return null;

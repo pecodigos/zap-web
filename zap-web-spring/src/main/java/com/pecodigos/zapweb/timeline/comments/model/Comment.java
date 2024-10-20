@@ -1,4 +1,4 @@
-package com.pecodigos.zapweb.comments.model;
+package com.pecodigos.zapweb.timeline.comments.model;
 
 import com.pecodigos.zapweb.users.model.User;
 import jakarta.persistence.*;
