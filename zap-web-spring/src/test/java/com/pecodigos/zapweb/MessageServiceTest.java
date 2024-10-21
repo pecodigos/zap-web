@@ -1,6 +1,7 @@
 package com.pecodigos.zapweb;
 
 import com.pecodigos.zapweb.chats.dtos.MessageDTO;
+import com.pecodigos.zapweb.chats.dtos.mappers.MessageMapper;
 import com.pecodigos.zapweb.chats.models.ChatRoom;
 import com.pecodigos.zapweb.chats.models.Message;
 import com.pecodigos.zapweb.chats.repositories.MessageRepository;
@@ -26,6 +27,9 @@ class MessageServiceTest {
     @Mock
     private MessageRepository messageRepository;
 
+    @Mock
+    private MessageMapper messageMapper;
+
     @InjectMocks
     private MessageService messageService;
 
@@ -47,6 +51,9 @@ class MessageServiceTest {
         message.setChatRoom(new ChatRoom(chatRoomId, new ArrayList<>(), null));
         message.setContent(null);
         message.setTimestamp(LocalDateTime.now());
+
+        when(messageMapper.toEntity(any(MessageDTO.class))).thenReturn(message);
+        when(messageMapper.toDto(any(Message.class))).thenReturn(messageDTO);
 
         when(messageRepository.save(any(Message.class))).thenReturn(message);
 
