@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { firstValueFrom } from 'rxjs';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -27,12 +27,18 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   async onLogin() {
     try {
       const response = await firstValueFrom(this.authService.login(this.username, this.password));
-      console.log('Login successful', response)
+
+      if (response) {
+       this.router.navigate(['/chat']);
+      } else {
+        console.log('Login failed: Invalid credentials.');
+      }
+
     } catch(error) {
       console.error('Login failed.', error);
     }
