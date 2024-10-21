@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_comments")
+@Table(name = "comments")
 public class Comment implements Serializable {
 
     @Id

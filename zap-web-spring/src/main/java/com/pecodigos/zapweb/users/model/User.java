@@ -1,5 +1,6 @@
 package com.pecodigos.zapweb.users.model;
 
+import com.pecodigos.zapweb.chats.models.ChatRoom;
 import com.pecodigos.zapweb.timeline.posts.model.Post;
 import com.pecodigos.zapweb.enums.Role;
 import jakarta.persistence.*;
@@ -22,7 +23,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_users")
+@Table(name = "users")
 public class User implements Serializable {
 
     @Id
@@ -58,4 +59,7 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "author")
     private List<Post> posts;
+
+    @ManyToMany
+    private List<ChatRoom> chatRooms;
 }
