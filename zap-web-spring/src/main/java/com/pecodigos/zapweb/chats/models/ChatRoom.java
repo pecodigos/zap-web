@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "chatrooms")
-public class ChatRoom {
+public class ChatRoom implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
