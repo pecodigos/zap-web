@@ -1,1 +1,35 @@
-<p>chat works!</p>
+<div class="chat-container">
+  <div class="sidebar">
+    <!-- Chat List -->
+    <mat-form-field class="search-bar" appearance="fill">
+      <mat-label>Search chats</mat-label>
+      <input matInput type="text" placeholder="Search chats..." />
+    </mat-form-field>
+    <mat-list class="chat-list">
+      <!-- Loop through your contacts or chat rooms -->
+      <mat-list-item *ngFor="let chat of chats" (click)="setActiveChat(chat)" class="chat-item">
+        <div matListAvatar>{{ chat.avatar }}</div>
+        <div class="chat-info">
+          <h4 matLine class="chat-name">{{ chat.name }}</h4>
+          <p matLine class="last-message">{{ chat.lastMessage }}</p>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="chat-area" *ngIf="activeChat">
+    <mat-toolbar color="primary" class="chat-header">Chat with {{ activeChat.name }}</mat-toolbar>
+    <div class="chat-messages">
+      <!-- Loop through messages of the active chat -->
+      <div class="message" *ngFor="let message of activeChat.messages">
+        <span [class.sent]="message.isSent">{{ message.text }}</span>
+      </div>
+    </div>
+    <div class="message-input">
+      <mat-form-field appearance="outline" class="message-field">
+        <mat-label>Type a message</mat-label>
+        <input matInput type="text" [(ngModel)]="newMessage" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
