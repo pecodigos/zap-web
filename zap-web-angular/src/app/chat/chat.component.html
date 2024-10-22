@@ -17,7 +17,7 @@
     </mat-list>
   </div>
   <div class="chat-area" *ngIf="activeChat">
-    <mat-toolbar color="primary" class="chat-header">Chat with {{ activeChat.name }}</mat-toolbar>
+    <mat-toolbar color="primary" class="chat-header">{{ activeChat.name }}</mat-toolbar>
     <div class="chat-messages">
       <!-- Loop through messages of the active chat -->
       <div class="message" *ngFor="let message of activeChat.messages">
