@@ -23,6 +23,8 @@ public class ChatRoom implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    private String name;
+
     @ManyToMany(mappedBy = "chatRooms")
     private List<User> participants;
 

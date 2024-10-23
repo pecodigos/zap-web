@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/chat-2rooms")
+@RequestMapping("/api/chats")
 @AllArgsConstructor
 public class ChatRoomController {
 
@@ -24,7 +24,7 @@ public class ChatRoomController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ChatRoomDTO> getChatRoom(@RequestBody @PathVariable(name = "id") UUID id) {
+    public ResponseEntity<ChatRoomDTO> getChatRoom(@PathVariable(name = "id") UUID id) {
         var chatRoomDTO = chatRoomService.getChatRoom(id).orElseThrow(() -> new NoSuchElementException("No ChatRoom with that id."));
         return ResponseEntity.ok(chatRoomDTO);
     }

@@ -24,6 +24,8 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    private String text;
+
     private UUID senderId;
 
     @Enumerated(EnumType.STRING)

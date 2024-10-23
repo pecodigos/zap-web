@@ -1,7 +1,6 @@
 package com.pecodigos.zapweb.users.model;
 
 import com.pecodigos.zapweb.chats.models.ChatRoom;
-import com.pecodigos.zapweb.timeline.posts.model.Post;
 import com.pecodigos.zapweb.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -56,9 +55,6 @@ public class User implements Serializable {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "author")
-    private List<Post> posts;
 
     @ManyToMany
     private List<ChatRoom> chatRooms;

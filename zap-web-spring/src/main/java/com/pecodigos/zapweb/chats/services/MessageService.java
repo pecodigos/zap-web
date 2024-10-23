@@ -17,8 +17,8 @@ public class MessageService {
     private final MessageRepository messageRepository;
     private final MessageMapper messageMapper;
 
-    public MessageDTO getMessage(UUID id) {
-        return messageRepository.findById(id)
+    public void getMessage(UUID id) {
+        messageRepository.findById(id)
                 .map(messageMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException("No chat found with that id."));
     }

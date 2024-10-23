@@ -43,12 +43,12 @@ class MessageServiceTest {
         UUID messageId = UUID.randomUUID();
         UUID senderId = UUID.randomUUID();
         UUID chatRoomId = UUID.randomUUID();
-        MessageDTO messageDTO = new MessageDTO(messageId, senderId, chatRoomId, null, null);
+        MessageDTO messageDTO = new MessageDTO(messageId, "", senderId, chatRoomId, null, null);
 
         Message message = new Message();
         message.setId(messageId);
         message.setSenderId(senderId);
-        message.setChatRoom(new ChatRoom(chatRoomId, new ArrayList<>(), null));
+        message.setChatRoom(new ChatRoom(chatRoomId,"", new ArrayList<>(), null));
         message.setContent(null);
         message.setTimestamp(LocalDateTime.now());
 
