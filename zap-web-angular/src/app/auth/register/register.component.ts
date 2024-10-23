@@ -43,7 +43,7 @@ export class RegisterComponent {
         console.log("Registration failed: Fields not filled properly.");
       }
     } catch (error) {
-      console.error('Registration failed', error);
+      alert('Registration failed.');
     }
   }
 }
