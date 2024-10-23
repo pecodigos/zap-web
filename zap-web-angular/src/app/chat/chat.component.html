@@ -6,7 +6,6 @@
       <input matInput type="text" placeholder="Search chats..." />
     </mat-form-field>
     <mat-list class="chat-list">
-      <!-- Loop through your contacts or chat rooms -->
       <mat-list-item *ngFor="let chat of chats" (click)="setActiveChat(chat)" class="chat-item">
         <div matListAvatar>{{ chat.avatar }}</div>
         <div class="chat-info">
@@ -15,11 +14,12 @@
         </div>
       </mat-list-item>
     </mat-list>
+    <!-- Button to start a new conversation -->
+    <button mat-raised-button color="primary" (click)="startNewConversation()">Start Conversation</button>
   </div>
   <div class="chat-area" *ngIf="activeChat">
     <mat-toolbar color="primary" class="chat-header">{{ activeChat.name }}</mat-toolbar>
     <div class="chat-messages">
-      <!-- Loop through messages of the active chat -->
       <div class="message" *ngFor="let message of activeChat.messages">
         <span [class.sent]="message.isSent">{{ message.text }}</span>
       </div>
@@ -27,7 +27,7 @@
     <div class="message-input">
       <mat-form-field appearance="outline" class="message-field">
         <mat-label>Type a message</mat-label>
-        <input matInput type="text" [(ngModel)]="newMessage" />
+        <input matInput type="text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" />
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
     </div>
