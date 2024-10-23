@@ -34,7 +34,7 @@ export class LoginComponent {
       const response = await firstValueFrom(this.authService.login(this.username, this.password));
 
       if (response) {
-        this.authService.setToken(response.token);
+        const { token, userId } = response;
         this.router.navigate(['/chat']);
       } else {
         console.log('Login failed: Invalid credentials.');

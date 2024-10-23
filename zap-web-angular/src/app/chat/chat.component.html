@@ -18,10 +18,10 @@
     <button mat-raised-button color="primary" (click)="startNewConversation()">Start Conversation</button>
   </div>
   <div class="chat-area" *ngIf="activeChat">
-    <mat-toolbar color="primary" class="chat-header">{{ activeChat.name }}</mat-toolbar>
+    <mat-toolbar class="chat-header">{{ activeChat.name }}</mat-toolbar>
     <div class="chat-messages">
       <div class="message" *ngFor="let message of activeChat.messages">
-        <span [class.sent]="message.isSent">{{ message.text }}</span>
+        <span [class.sent]="message.isSent">{{ message.content }}</span>
       </div>
     </div>
     <div class="message-input">
