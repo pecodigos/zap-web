@@ -1,6 +1,7 @@
 package com.pecodigos.zapweb.chats.controller;
 
 import com.pecodigos.zapweb.chats.dtos.ChatRoomDTO;
+import com.pecodigos.zapweb.chats.dtos.CreateChatRequest;
 import com.pecodigos.zapweb.chats.services.ChatRoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,16 @@ import java.util.UUID;
 public class ChatRoomController {
 
     private final ChatRoomService chatRoomService;
+
+    @PostMapping("/create-or-fetch")
+    public ResponseEntity<ChatRoomDTO> createOrFetchChat(@RequestBody CreateChatRequest request) {
+        var chatRoomDTO = chatRoomService.createOrFetchChat(
+                request.currentUserId(),
+                request.otherUserId()
+        );
+
+        return ResponseEntity.ok(chatRoomDTO);
+    }
 
     @PostMapping("/")
     public ResponseEntity<ChatRoomDTO> createChatRoom(@RequestBody ChatRoomDTO chatRoomDTO) {

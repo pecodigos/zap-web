@@ -1,6 +1,6 @@
 package com.pecodigos.zapweb.chats.models;
 
-import com.pecodigos.zapweb.enums.Content;
+import com.pecodigos.zapweb.enums.ContentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,10 +26,12 @@ public class Message implements Serializable {
 
     private String text;
 
+    private String imagePath;
+
     private UUID senderId;
 
     @Enumerated(EnumType.STRING)
-    private Content content;
+    private ContentType contentType;
 
     @CreationTimestamp
     private LocalDateTime timestamp;

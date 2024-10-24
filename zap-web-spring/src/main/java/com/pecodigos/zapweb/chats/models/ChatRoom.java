@@ -1,5 +1,6 @@
 package com.pecodigos.zapweb.chats.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pecodigos.zapweb.users.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,11 @@ public class ChatRoom implements Serializable {
 
     private String name;
 
-    @ManyToMany(mappedBy = "chatRooms")
+    @ManyToMany(mappedBy = "chatRooms", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<User> participants;
 
-    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Message> messages;
 }
