@@ -57,7 +57,7 @@ public class SecurityConfig {
         var configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:4200"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "ContentType-Type"));
         configuration.setAllowCredentials(true);
 
         var source = new UrlBasedCorsConfigurationSource();

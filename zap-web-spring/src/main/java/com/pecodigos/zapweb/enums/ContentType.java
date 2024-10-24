@@ -1,7 +1,6 @@
 package com.pecodigos.zapweb.enums;
 
-public enum Content {
+public enum ContentType {
     TEXT,
-    IMAGE,
-    VIDEO
+    IMAGE
 }

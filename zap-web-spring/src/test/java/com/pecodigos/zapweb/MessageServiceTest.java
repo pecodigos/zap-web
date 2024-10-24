@@ -49,7 +49,7 @@ class MessageServiceTest {
         message.setId(messageId);
         message.setSenderId(senderId);
         message.setChatRoom(new ChatRoom(chatRoomId,"", new ArrayList<>(), null));
-        message.setContent(null);
+        message.setContentType(null);
         message.setTimestamp(LocalDateTime.now());
 
         when(messageMapper.toEntity(any(MessageDTO.class))).thenReturn(message);

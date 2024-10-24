@@ -1,5 +1,6 @@
 package com.pecodigos.zapweb.users.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pecodigos.zapweb.chats.models.ChatRoom;
 import com.pecodigos.zapweb.enums.Role;
 import jakarta.persistence.*;
@@ -56,6 +57,7 @@ public class User implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ChatRoom> chatRooms;
 }
