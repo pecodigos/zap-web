@@ -33,4 +33,12 @@ export class ChatService {
     };
     return this.http.post<Message>(`${this.messageApiUrl}/`, messagePayload);
   }
+
+  getUsers(): Observable<{ id: string, name: string }[]> {
+    return this.http.get<{ id: string, name: string }[]>('http://localhost:8080/api/users');
+  }
+
+  createOrFetchChatWithUser(userId: string): Observable<Chat> {
+    return this.http.post<Chat>(`${this.chatApiUrl}/with-user`, { userId });
+  }
 }

@@ -14,8 +14,15 @@
         </div>
       </mat-list-item>
     </mat-list>
-    <!-- Button to start a new conversation -->
-    <button mat-raised-button color="primary" (click)="startNewConversation()">Start Conversation</button>
+    <div>
+      <label for="userSelect">Select User:</label>
+      <select [(ngModel)]="selectedUserId" id="userSelect">
+        <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+      </select>
+      <button (click)="startNewConversation()">Start New Conversation</button>
+    </div>
+
+
   </div>
   <div class="chat-area" *ngIf="activeChat">
     <mat-toolbar class="chat-header">{{ activeChat.name }}</mat-toolbar>
